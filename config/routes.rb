@@ -1,9 +1,15 @@
 MlsAlmanac::Application.routes.draw do
 
+  get "roster/index"
   get '/api' => redirect('/api/v1')
   mount SportDb::Service::Server, :at => '/api/v1'  # NB: make sure to require 'sportdb-service'
 
   mount SportDbAdmin::Engine, :at => '/'  # mount a root possible?
+
+  # Can specify the format for each parameter with a regex.  The dot in event keys can be tricky...
+  # Assume all events have a dot
+  # Assume all teams don't
+  get 'roster/:event_key/:team_key' => 'roster#index', as: :roster, :event_key => /.+\.[0-9_]+/
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

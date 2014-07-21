@@ -1,0 +1,20 @@
+<h1>Roster For 
+  <%= @event.title %> - 
+  <%= @team.title %>
+</h1>
+<%= paginate @roster %>
+<table>
+  <tr>
+  <% @headings.each do |heading| %>
+    <th><%= heading.underscore.humanize.titleize %></th>
+  <% end %>
+  </tr>
+
+  <% @roster_rows.each do |r| %>
+  <tr>
+    <% @headings.each do |heading| %>
+    <td><%= (r[heading]) ? r[heading] : "--" %></td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
