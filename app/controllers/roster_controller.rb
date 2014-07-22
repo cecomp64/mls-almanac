@@ -50,18 +50,31 @@ class RosterController < ApplicationController
 
       # Builtin stat data
       #  TBD: need to add team id to te player data
-      ps = r.person.player_stats.find_by_event_id(@event.id)
-      ps.attributes.each do |attr, val|
-        case(attr)
-          when "id", "person_id", "team_id", "game_id", "created_at", "event_id", "updated_at"
-            next
-        else
-          row[attr] = val
-          @headings << attr
-        end
-      end # each attr
+      ps = r.person.player_stats.find_by_event_id_and_team_id(@event.id, @team.id)
+      if (ps)
+        ps.attributes.each do |attr, val|
+          case(attr)
+            when "id", "person_id", "team_id", "game_id", "created_at", "event_id", "updated_at"
+              next
+          else
+            row[attr] = val
+            @headings << attr
+          end
+        end # each attr
+      else
+        flash.now[:warn] = "Could not find any stats for #{r.person.name}"
+      end
       @roster_rows << row
     end
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render :layout => false,
+        :json => @roster_rows.to_json()
+      }
+    end
+    #debugger
   end
 
 end
