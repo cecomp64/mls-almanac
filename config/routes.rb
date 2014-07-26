@@ -10,6 +10,8 @@ MlsAlmanac::Application.routes.draw do
   # Assume all events have a dot
   # Assume all teams don't
   get 'roster/:event_key/:team_key' => 'roster#index', as: :roster, :event_key => /.+\.[0-9_]+/
+  get 'schedule/:event_key/:team_key' => 'schedule#index', as: :schedule, :event_key => /.+\.[0-9_]+/
+  get 'team_home/:event_key/:team_key' => 'team#index', as: :team, :event_key => /.+\.[0-9_]+/
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

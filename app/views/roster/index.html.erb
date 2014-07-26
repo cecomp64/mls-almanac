@@ -5,16 +5,21 @@
 <%= paginate @roster %>
 <table>
   <tr>
+  <% 
+    @asc = (@asc == 0) ? 1 : 0
+  %>
   <% @headings.each do |heading| %>
-    <th><%= heading.underscore.humanize.titleize %></th>
+    <th><%= link_to heading.underscore.humanize.titleize, roster_path(team_key: @team.key, event_key: @event.key, order_by: heading, asc: @asc, fn: params[:fn], fv: params[:fv]) %></th>
   <% end %>
   </tr>
 
   <% @roster_rows.each do |r| %>
   <tr>
     <% @headings.each do |heading| %>
-    <td><%= (r[heading]) ? r[heading] : "--" %></td>
+    <td><%= (r[heading]) ? (link_to r[heading], roster_path(team_key: @team.key, event_key: @event.key, order_by: params[:order_by], asc: params[:asc], fn: heading, fv: r[heading])) : "--" %></td>
     <% end %>
   </tr>
   <% end %>
 </table>
+
+<%= link_to "Clear Filters", roster_path(team_key: @team.key, event_key: @event.key) %>
