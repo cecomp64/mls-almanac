@@ -1,0 +1,33 @@
+$primary_color: #8CC0D9;
+$secondary_color: #8CA7D9;
+$alternate_row_color: #D9EAF2;
+$highlighted_row_color: #D9F2DA;
+$positive_number: #3E9346;
+$negative_number: #A03A32;
+$subheading_h1: #F2E3D9;
+
+.alternate_row {
+  background: $alternate_row_color;
+}
+
+tr:hover {
+  background: $highlighted_row_color;
+}
+
+.subheading {
+  padding: 0px;
+  margin: 0px;
+}
+
+h1.subheading {
+  background: $subheading_h1;
+}
+
+.winner {
+  color: $positive_number;
+}
+
+.loser {
+  color: $negative_number;
+}
+

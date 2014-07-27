@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+table.default_data tr td {
+  padding-right: 10px;
+}
+
