@@ -110,17 +110,4 @@ class RosterController < ApplicationController
     #debugger
   end
 
-  # Get a roster with all stats for each player on this team in one query
-  #  Note that since the query is structured to return 
-  #  only player stats that match this person, event, and team,
-  #  the reference to roster[n].person.player_stats will match
-  #  with the query's team and event.  There could be other entries
-  #  in PlayerStat with same person and different event, team, but those
-  #  will not match roster[n].person.player_stats (as intended!)
-  #
-  # NOTE: If a player has no stats, they will not end up in this record
-  def players_with_stats(event, team, order_by="", where_by="")
-    return SportDb::Model::Roster.where(:event_id => event, :team_id => team).includes(:person => :player_stats).references(:player_stats).where("player_stats.event_id = #{event.id} and player_stats.team_id = #{team.id}").order(order_by).where(where_by)
-  end
-
 end

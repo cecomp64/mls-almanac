@@ -1,10 +1,10 @@
 MlsAlmanac::Application.routes.draw do
 
-  get "roster/index"
+  get '/' => 'static#index'
   get '/api' => redirect('/api/v1')
   mount SportDb::Service::Server, :at => '/api/v1'  # NB: make sure to require 'sportdb-service'
 
-  mount SportDbAdmin::Engine, :at => '/'  # mount a root possible?
+  mount SportDbAdmin::Engine, :at => '/sportdb'  # mount a root possible?
 
   # Can specify the format for each parameter with a regex.  The dot in event keys can be tricky...
   # Assume all events have a dot

@@ -1,0 +1,21 @@
+<% 
+  table = {}
+  table[:class] = "default_data"
+  rows = []
+  @schedule.each do |game|
+    game_s = parse_game(game)
+    row = []
+    row << {content: "#{game.play_at.in_time_zone(@timezone).strftime('%b %d')}" }
+    row << {content: "#{game.play_at.in_time_zone(@timezone).strftime('%H:%M')}" }
+    row << {content: "#{game.play_at.in_time_zone(@timezone).strftime('%Z')}" }
+    row << {content: "#{game_s[:team1]} " }
+    row << {content: game.score1 ? "(#{game.score1} - #{game.score2})" : ""}
+    row << {content: "#{game_s[:team2]}" }
+    rows << row
+  end 
+
+  table[:rows] = rows
+%>
+
+<%= table_helper table %>
+

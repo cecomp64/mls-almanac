@@ -1,5 +1,22 @@
 module ApplicationHelper
 
+  def header_title(title)
+    if (title)
+      return title
+    end
+
+    return "&nbsp;"
+  end
+
+  def full_title(title)
+    t = "MLS Almanac"
+    if (title)
+      return "#{t} | #{title}"
+    end
+
+    return t
+  end
+
   # Add style to winner, loser, and scores
   # Return a hash of ouput formats
   def parse_game(game)

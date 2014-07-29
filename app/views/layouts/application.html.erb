@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MlsAlmanac</title>
+  <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<h1 class="subheading"><%= header_title(yield(:h1)) %>&nbsp;</h1>
+<h2 class="subheading"><%= header_title(yield(:h2)) %>&nbsp;</h2>
+<h2 class="subheading alternate_row"><%= header_title(yield(:h3)) %>&nbsp;</h2>
+
 
 <% if flash[:error] %>
 <div id="error"><%= flash[:error] %></div>

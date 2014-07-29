@@ -1,0 +1,14 @@
+<%= provide(:title, 'Home') %>
+<%= provide(:h1, 'MLS Almanac') %>
+
+<%
+  table = {}
+  table[:headings] = [{content: 'Seasons'}]
+  rows = []
+  @events.each do |e|
+    row = [{content: (link_to e.key, schedule_path(event_key: e.key, team_key: 'none'))}]
+    rows << row
+  end
+  table[:rows] = rows
+%>
+<%= table_helper table %>

@@ -30,14 +30,4 @@ class ScheduleController < ApplicationController
 
   end
 
-
-  # Get the schedule for a team during a season
-  # If team is nil, then get the schedule for the whole
-  # season
-  def schedule(event, team)
-    if (event and team)
-      return Game.joins(:round).where("rounds.event_id = #{event.id}").where("games.team1_id = #{team.id} or games.team2_id=#{team.id}").order("games.play_at").includes(:team1, :team2)
-    elsif (event)
-    end
-  end
 end
