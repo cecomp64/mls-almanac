@@ -1,8 +1,8 @@
-<h1 class="subheading"><%= "#{@event.title}" %></h1>
-<h2 class="subheading">>> <%= "#{@team.title}"%> Schedule</h2>
-<h2 class="subheading alternate_row"> &nbsp; </h2>
+<%= provide(:title, "Schedule #{@event.title}") %>
+<%= provide(:h1, @event.title) %>
+<%= provide(:h2, ">> #{@team.title}") %>
 
-<div style="float: left; margin-left: 15px; margin-right: 15px;">
+<div class="left">
   <h3>Roster (<%= link_to 'Stats', roster_path(team_key: @team.key, event_key: @event.key)%>)</h3>
   <%= render 'roster/roster_table' %>
 </div>

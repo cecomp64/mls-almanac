@@ -23,18 +23,30 @@ module ApplicationHelper
     g = {}
 
     if (game.score1 and (game.score1 > game.score2))
-      g[:winner] = "<span class=\"winner\">#{game.team1.title}</span>"
-      g[:loser] = "<span class=\"loser\">#{game.team2.title}</span>"
-      g[:team1] = "<span class=\"winner\">#{game.team1.title}</span>"
-      g[:team2] = "<span class=\"loser\">#{game.team2.title}</span>"
+      g[:team1] = link_to(content_tag(:span, game.team1.title, :class => "winner"), 
+                          team_path(event_key: @event.key,
+                          team_key: game.team1.key))
+      g[:team2] = link_to(content_tag(:span, game.team2.title, :class => "loser"), 
+                          team_path(event_key: @event.key,
+                          team_key: game.team2.key))
+      g[:winner] = g[:team1]
+      g[:loser] = g[:team2]
     elsif (game.score1 and (game.score2 > game.score1))
-      g[:winner] = "<span class=\"winner\">#{game.team2.title}</span>"
-      g[:loser] = "<span class=\"loser\">#{game.team1.title}</span>"
-      g[:team1] = "<span class=\"loser\">#{game.team1.title}</span>"
-      g[:team2] = "<span class=\"winner\">#{game.team2.title}</span>"
+      g[:team1] = link_to(content_tag(:span, game.team1.title, :class => "loser"),
+                          team_path(event_key: @event.key,
+                          team_key: game.team1.key))
+      g[:team2] = link_to(content_tag(:span, game.team2.title, :class => "winner"), 
+                          team_path(event_key: @event.key,
+                          team_key: game.team2.key))
+      g[:winner] = g[:team2]
+      g[:loser] = g[:team1]
     else
-      g[:team1] = game.team1.title
-      g[:team2] = game.team2.title
+      g[:team1] = link_to(content_tag(:span, game.team1.title, :class => "draw"),
+                          team_path(event_key: @event.key,
+                          team_key: game.team1.key))
+      g[:team2] = link_to(content_tag(:span, game.team2.title, :class => "draw"), 
+                          team_path(event_key: @event.key,
+                          team_key: game.team2.key))
     end
 
     return g

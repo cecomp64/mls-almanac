@@ -71,6 +71,7 @@ class ApplicationController < ActionController::Base
     if (event and team)
       return Game.joins(:round).where("rounds.event_id = #{event.id}").where("games.team1_id = #{team.id} or games.team2_id=#{team.id}").order(order_by).includes(:team1, :team2).where(where_by)
     elsif (event)
+      return Game.joins(:round).where("rounds.event_id = #{event.id}").order(order_by).includes(:team1, :team2).where(where_by).page(params[:page]).per(30)
     end
   end
 

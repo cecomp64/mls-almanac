@@ -1,5 +1,8 @@
-<h1 class="subheading"><%= "#{@event.title}" %></h1>
-<h2 class="subheading">>> <%= "#{@team.title}"%> Schedule</h2>
-<h2 class="subheading alternate_row"> &nbsp; </h2>
+<%= provide(:title, "Schedule #{@event.title}") %>
+<%= provide(:h1, @event.title) %>
+<%= provide(:h2, @team?@team.title : nil) %>
+<%= provide(:h3, "Full Season") %>
 
+<h3>Schedule</h3>
 <%= render 'schedule_table' %>
+<%= paginate @schedule, :window => 2 %>

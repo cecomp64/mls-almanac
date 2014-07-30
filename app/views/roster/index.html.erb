@@ -1,8 +1,9 @@
-<h1 class="subheading"><%= @event.title %></h1>
-<h2 class="subheading">>> Roster for <%= @team.title %></h2>
+<%= provide(:title, "Schedule #{@event.title}") %>
+<%= provide(:h1, @event.title) %>
+<%= provide(:h2, ">> Roster for #{@team.title}") %>
 
 <% if params[:order_by] %>
-<h2 class="subheading alternate_row">>>>> Sorted by <%= params[:order_by].titleize %></h2>
+<%= provide(:h3, ">>>> Sorted by #{params[:order_by].titleize}") %>
 <% end %>
 
 <% if params[:fn] and params[:fv] %>

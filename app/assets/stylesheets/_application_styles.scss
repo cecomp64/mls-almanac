@@ -5,6 +5,17 @@ $highlighted_row_color: #D9F2DA;
 $positive_number: #3E9346;
 $negative_number: #A03A32;
 $subheading_h1: #F2E3D9;
+$link_color: #1F20DC;
+$link_hover: #5DA3E8;
+
+a {
+  text-decoration: none;
+  color: $link_color;
+}
+
+a:hover {
+  color: $link_hover;
+}
 
 .alternate_row {
   background: $alternate_row_color;
@@ -23,11 +34,29 @@ h1.subheading {
   background: $subheading_h1;
 }
 
+h2.subheading {
+  padding-left: 20px;
+}
+
+h2.subheading.alternate_row {
+  padding-left: 40px;
+}
+
+.draw {
+  color: black;
+}
+
 .winner {
   color: $positive_number;
 }
 
 .loser {
   color: $negative_number;
+}
+
+.left {
+  float: left; 
+  margin-left: 15px; 
+  margin-right: 15px;
 }
 
