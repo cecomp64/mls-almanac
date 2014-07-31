@@ -1,6 +1,6 @@
 <%= provide(:title, "Schedule #{@event.title}") %>
 <%= provide(:h1, @event.title) %>
-<%= provide(:h2, ">> #{@team.title}") %>
+<%= provide(:h2, @team ? "##{@standing.pos} #{@team.title} (#{@standing.won}-#{@standing.lost}-#{@standing.drawn})" : nil) %>
 
 <div class="left">
   <h3>Roster (<%= link_to 'Stats', roster_path(team_key: @team.key, event_key: @event.key)%>)</h3>
@@ -8,7 +8,7 @@
 </div>
 
 <div>
-  <h3>Recent Games</h3>
+  <h3>Recent Games (<%= link_to 'Schedule', schedule_path(team_key: @team.key, event_key: @event.key)%>)</h3>
   <%= render 'schedule/schedule_table' %>
 </div>
 

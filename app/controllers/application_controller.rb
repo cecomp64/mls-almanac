@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # Return the standings of teams in an event
-  def get_standings(event)
+  def get_standings(event, team=nil)
     # If necessary, recompute the standings
     es = SportDb::Model::EventStanding.find_by_event_id(event)
     if (!es)
@@ -13,7 +13,11 @@ class ApplicationController < ActionController::Base
     end
 
     # Return ordered standings
-    return es.entries.order("pos ASC").includes("team")
+    if (team)
+      return es.entries.where(:team_id => team).first
+    else
+      return es.entries.order("pos ASC").includes("team")
+    end
   end
 
   # Pull team from the url

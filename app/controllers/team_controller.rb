@@ -29,5 +29,6 @@ class TeamController < ApplicationController
     # Compute available years
 
     # Compute record
+    @standing = get_standings(@event, @team)
   end
 end
