@@ -1,8 +1,17 @@
 <%= provide(:title, "Schedule #{@event.title}") %>
 <%= provide(:h1, @event.title) %>
-<%= provide(:h2, @team?@team.title : nil) %>
+<%= provide(:h2, @team ? "##{@team_standing.pos} #{@team.title} (#{@team_standing.won}-#{@team_standing.lost}-#{@team_standing.drawn})" : nil) %>
 <%= provide(:h3, "Full Season") %>
 
+<div class="left">
 <h3>Schedule</h3>
 <%= render 'schedule_table' %>
 <%= paginate @schedule, :window => 2 %>
+</div>
+
+<% if not @team %>
+<div class="right">
+<h3>Standings</h3>
+<%= render 'standings_table' %>
+</div>
+<% end %>

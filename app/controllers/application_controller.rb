@@ -3,6 +3,19 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  # Return the standings of teams in an event
+  def get_standings(event)
+    # If necessary, recompute the standings
+    es = SportDb::Model::EventStanding.find_by_event_id(event)
+    if (!es)
+      es = SportDb::Model::EventStanding.create(event: event)
+      es.recalc!
+    end
+
+    # Return ordered standings
+    return es.entries.order("pos ASC").includes("team")
+  end
+
   # Pull team from the url
   def get_team
     if (!params[:team_key])
@@ -69,7 +82,7 @@ class ApplicationController < ActionController::Base
   # season
   def schedule(event, team, order_by = "games.play_at", where_by="")
     if (event and team)
-      return Game.joins(:round).where("rounds.event_id = #{event.id}").where("games.team1_id = #{team.id} or games.team2_id=#{team.id}").order(order_by).includes(:team1, :team2).where(where_by)
+      return Game.joins(:round).where("rounds.event_id = #{event.id}").where("games.team1_id = #{team.id} or games.team2_id=#{team.id}").order(order_by).includes(:team1, :team2).where(where_by).page(params[:page]).per(30)
     elsif (event)
       return Game.joins(:round).where("rounds.event_id = #{event.id}").order(order_by).includes(:team1, :team2).where(where_by).page(params[:page]).per(30)
     end

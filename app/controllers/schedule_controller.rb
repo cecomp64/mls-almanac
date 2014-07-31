@@ -17,7 +17,10 @@ class ScheduleController < ApplicationController
       return
     else
       @schedule = schedule(@event, @team)
-      #@schedule = Kaminari.paginate_array(@schedule).page(params[:page]).per(30)
+      @standings = get_standings(@event)
+      if (@team)
+        @team_standing = @standings.find_by_team_id(@team)
+      end
     end
 
     respond_to do |format|

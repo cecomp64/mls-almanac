@@ -59,6 +59,7 @@ module ApplicationHelper
   #     heading[:content] -- html content
   #     heading[:style] -- string of style info
   #     heading[:class] -- string of classes
+  #     heading[:colspan] -- Number of columns a header can span
   #   table[:rows] -- list of rows
   #     row - list of td entries (same as th)
   def table_helper(table)
@@ -75,6 +76,7 @@ module ApplicationHelper
         table_str += '<th'
         table_str += " class=\"#{heading[:class]}\"" if (heading[:class])
         table_str += " style=\"#{heading[:style]}\"" if (heading[:style])
+        table_str += " colspan=\"#{heading[:colspan]}\"" if (heading[:colspan])
         table_str += '>'
         table_str += heading[:content] if (heading[:content])
         table_str += '</th>'

@@ -1,0 +1,30 @@
+<% 
+  table = {}
+  table[:class] = "default_data"
+  headings = []
+  headings << {content: "Rank"}
+  headings << {content: "Team"}
+  headings << {content: "Won"}
+  headings << {content: "Lost"}
+  headings << {content: "Draw"}
+  headings << {content: "GF"}
+  headings << {content: "GA"}
+  table[:headings] = headings
+  rows = []
+  @standings.each do |entry|
+    row = []
+    row << {content: "#{entry.pos} " }
+    row << {content: "#{entry.team.title} " }
+    row << {content: "#{entry.won} " }
+    row << {content: "#{entry.lost} " }
+    row << {content: "#{entry.drawn} " }
+    row << {content: "#{entry.goals_for} " }
+    row << {content: "#{entry.goals_against} " }
+    rows << row
+  end 
+
+  table[:rows] = rows
+%>
+
+<%= table_helper table %>
+

@@ -1,6 +1,12 @@
 <% 
   table = {}
   table[:class] = "default_data"
+  headings = []
+  headings << {content: "Game Time", colspan: "3"}
+  headings << {content: "Home Team"}
+  headings << {content: "Score"}
+  headings << {content: "Away Team"}
+  table[:headings] = headings
   rows = []
   @schedule.each do |game|
     game_s = parse_game(game)
