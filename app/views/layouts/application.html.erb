@@ -8,7 +8,13 @@
 </head>
 <body>
 
-<h1 class="subheading"><%= header_title(yield(:h1)) %>&nbsp;</h1>
+<h1 class="subheading">
+<%= if ((defined? @event) and @event) 
+     link_to(@event.title, schedule_path(event_key: @event.key, team_key: "none"))
+    else
+      header_title(yield(:h1)) 
+    end%>
+      &nbsp;</h1>
 <h2 class="subheading"><%= header_title(yield(:h2)) %>&nbsp;</h2>
 <h2 class="subheading alternate_row"><%= header_title(yield(:h3)) %>&nbsp;</h2>
 
