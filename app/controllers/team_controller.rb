@@ -12,7 +12,7 @@ class TeamController < ApplicationController
 
     # Get Schedule
     next_five = schedule(@event, @team, "games.play_at ASC", "games.score1 is null").limit(5)
-    last_five = schedule(@event, @team, "games.play_at DESC", "games.score1 is not null").limit(5)
+    last_five = schedule(@event, @team, "games.play_at DESC", "games.score1 is not null").limit(5).reverse
     @schedule = last_five + next_five
 
     # Get Roster Rows and Headings

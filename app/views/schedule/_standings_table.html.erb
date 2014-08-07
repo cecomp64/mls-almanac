@@ -14,7 +14,7 @@
   @standings.each do |entry|
     row = []
     row << {content: "#{entry.pos} " }
-    row << {content: "#{entry.team.title} " }
+    row << {content: link_to(entry.team.title, team_path(event_key: @event.key, team_key: entry.team.key))}
     row << {content: "#{entry.won} " }
     row << {content: "#{entry.lost} " }
     row << {content: "#{entry.drawn} " }
