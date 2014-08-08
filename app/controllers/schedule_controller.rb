@@ -27,7 +27,7 @@ class ScheduleController < ApplicationController
       format.html
       format.json {
         render :layout => false,
-        :json => @schedule.to_json()
+        :json => (@tkey == "standings") ? @standings.to_json() : @schedule.to_json()
       }
     end
 

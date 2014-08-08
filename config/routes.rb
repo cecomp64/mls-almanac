@@ -1,6 +1,8 @@
 MlsAlmanac::Application.routes.draw do
 
   get '/' => 'static#index'
+  get '/events' => 'static#index'
+  get '/teams/:event_key' => 'static#index', as: :teams, :event_key => /.+\.[0-9_]+/
   get '/api' => redirect('/api/v1')
   mount SportDb::Service::Server, :at => '/api/v1'  # NB: make sure to require 'sportdb-service'
 
