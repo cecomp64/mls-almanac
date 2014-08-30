@@ -46,10 +46,10 @@ end
 # gem 'capistrano', group: :development
 
 # Use debugger
-gem 'debugger', group: [:development, :test]
+gem 'byebug', group: [:development, :test]
 
 # SportDB Gems
-gem 'sportdb_cecomp64'
+gem 'sportdb_cecomp64', :github => 'cecomp64/sport.db.ruby', :branch => 'master'
 gem 'sportdb-admin'
 gem 'sinatra', require: 'sinatra/base'
 
