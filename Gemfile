@@ -16,7 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 group :production do
-  #gem 'pg', '0.15.1'
+  gem 'pg', '0.15.1'
 end
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -56,6 +56,10 @@ gem 'sinatra', require: 'sinatra/base'
 gem 'worlddb-flags', '0.1.0'  # use bundled country flags
 gem 'sportdb-logos',    '0.1.0',  git: 'https://github.com/sportlogos/sport.db.logos.ruby.git', branch: 'gh-pages'
 gem 'footballdb-logos', '0.1.0',  git: 'https://github.com/sportlogos/football.db.logos.ruby.git', branch: 'gh-pages'
+
+# Football Data Gems
+gem 'worlddb-data', '9.9.9', git: 'https://github.com/openmundi/world.db.git'
+gem 'major-league-soccer-data', '9.9.9', git: 'https://github.com/openfootball/major-league-soccer.git'
 
 # Pagination
 gem 'kaminari'
