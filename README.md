@@ -11,16 +11,24 @@ This app uses the following open data sets:
 
 To initialize the databases, run the create task:
 
+```
 $ rake create
+```
 
 To seed the database with world and season information, run the init task:
 
+```
 $ rake init
+```
 
 To update the mls data, run the update task (Note, it is recommended to delete, init, update instead of just updating)
 
+```
 $ rake update
+```
 
 To delete all entries from all tables, run the delete task
 
+```
 $ rake delete
+```
