@@ -12,7 +12,8 @@ class RosterController < ApplicationController
     #@asc = params[:asc] ? params[:asc] : "DESC"
     @asc = params[:asc] ? params[:asc].to_i : 0
     ascention = ["DESC", "ASC"]
-    @order_by = params[:order_by] ? "player_stats.#{params[:order_by]} #{ascention[@asc]}" : ""
+    # Be sure to quote the order by line, otherwise PostgresSQL will lower-case it, and column will not be found
+    @order_by = params[:order_by] ? "player_stats.\"#{params[:order_by]}\" #{ascention[@asc]}" : ""
     @filter = (params[:fn] and params[:fv]) ? "player_stats.#{params[:fn]}=\"#{params[:fv]}\"" : ""
 
     # Name is in persons table, all other keys are in player_stats
