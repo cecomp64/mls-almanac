@@ -31,6 +31,11 @@ task :update do
   SportDb.read_setup('setups/all_stats', find_data_path_from_gemfile_gitref('major-league-soccer'))
 end
 
+desc 'Update the sports data to the latest in github. Only select most recent years to keep size of DB small'
+task :update_recent do
+  SportDb.read_setup('setups/sample_stats', find_data_path_from_gemfile_gitref('major-league-soccer'))
+end
+
 desc ''
 task :delete do
   LogDb.delete!
