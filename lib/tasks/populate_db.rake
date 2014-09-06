@@ -36,7 +36,11 @@ task :update_recent do
   SportDb.read_setup('setups/sample_stats', find_data_path_from_gemfile_gitref('major-league-soccer'))
 end
 
-desc ''
+desc 'Do all tasks necessary to seed the database from a fresh start'
+task :seed_all => [:create, :init, :update] do
+end
+
+desc 'Remove all entries from the DB (but keep the tables)'
 task :delete do
   LogDb.delete!
   ConfDb.delete!
@@ -44,5 +48,4 @@ task :delete do
   WorldDb.delete!
   PersonDb.delete!
   SportDb.delete!
-
 end

@@ -32,3 +32,11 @@ To delete all entries from all tables, run the delete task
 ```
 $ rake delete
 ```
+
+## Deployment Notes
+
+sportdb has a lot of rows, which can slow down the database.  On Heroku, you can run the rake tasks in the background as follows:
+
+```
+$rake run:detached rake init
+```
