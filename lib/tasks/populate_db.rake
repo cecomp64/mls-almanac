@@ -21,7 +21,10 @@ end
 desc 'Seed the database with World info.'
 task :init do
   # Country data
-  WorldDb.read_setup('setups/all', find_data_path_from_gemfile_gitref('world.db'))
+  #WorldDb.read_setup('setups/all', find_data_path_from_gemfile_gitref('world.db'))
+  us_regions = ['continents', 'north-america/countries', 'north-america/us-united-states/regions', 'north-america/us-united-states/cities']
+  WorldDb.read(us_regions, SportDb.test_data_path + '/world.db')
+
   # Season data
   SportDb.read_builtin
 end
