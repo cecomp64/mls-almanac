@@ -35,8 +35,23 @@ task :update do
 end
 
 desc 'Update the sports data to the latest in github. Only select most recent years to keep size of DB small'
-task :update_recent do
+task :update_recent => [:update_2014, :update_standings] do
+end
+
+task :update_2014 do
   SportDb.read_setup('setups/sample_stats', find_data_path_from_gemfile_gitref('major-league-soccer'))
+end
+
+task :update_standings do
+  Event.all.each do |event|
+    es = SportDb::Model::EventStanding.find_by_event_id(event.id)
+    if (!es)
+      es = SportDb::Model::EventStanding.create(event: event)
+    end
+    
+    # Update standings
+    es.recalc!
+  end
 end
 
 task :seed_all => [:init, :update] do
