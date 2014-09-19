@@ -13,7 +13,7 @@
 
     row = []
     row << {content: "#{entry.person.name} " }
-    row << {content: "#{entry.person.player_stats.first.totalGoals} " }
+    row << {content: "#{entry.person.player_stats.first['totalGoals']} " }
     rows << row
   end 
 
