@@ -25,7 +25,8 @@ class RosterController < ApplicationController
     end
 
     #TBD: render a default view
-    if (@ekey == nil or @tkey == nil)
+    #if (@ekey == nil or @tkey == nil)
+    if (@ekey == nil)
       redirect_to root_url
       return
     end
@@ -35,7 +36,8 @@ class RosterController < ApplicationController
     @team = Team.find_by_key(@tkey)
 
     #TBD: render a default view
-    if (@event == nil or @team == nil)
+    #if (@event == nil or @team == nil)
+    if (@event == nil)
       @roster = []
       flash.now[:error] = "Could not find a matching event or team.  Please check your request."
       redirect_to '/'

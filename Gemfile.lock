@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/cecomp64/sport.db.ruby.git
-  revision: 47be71ab0bf3af2a1f6f208defabc1a0ae99356a
+  revision: bc5d0e68c3b7268f88f87a7049037c52a3945dd8
   branch: master
   specs:
     sportdb_cecomp64 (2.0.0)

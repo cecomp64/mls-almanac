@@ -1,0 +1,24 @@
+<% 
+  table = {}
+  table[:class] = "default_data"
+  headings = []
+  headings << {content: "Name"}
+  headings << {content: "Goals"}
+  table[:headings] = headings
+  rows = []
+  @players.each_with_index do |entry, i|
+    if (@player_limit and i == @player_limit)
+      break
+    end
+
+    row = []
+    row << {content: "#{entry.person.name} " }
+    row << {content: "#{entry.person.player_stats.first.totalGoals} " }
+    rows << row
+  end 
+
+  table[:rows] = rows
+%>
+
+<%= table_helper table %>
+

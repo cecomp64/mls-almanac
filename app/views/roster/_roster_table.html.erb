@@ -2,9 +2,14 @@
   table = {}
   headings = []
 
+  team_key = "none"
+  if (!@team.nil?)
+    team_key = @team.key
+  end
+
   # Create sortable headings
   @headings.each do |heading|
-    headings << {content: link_to(heading.underscore.humanize.titleize, roster_path(team_key: @team.key, event_key: @event.key, order_by: heading, asc: @asc, fn: params[:fn], fv: params[:fv]))}
+    headings << {content: link_to(heading.underscore.humanize.titleize, roster_path(team_key: team_key, event_key: @event.key, order_by: heading, asc: @asc, fn: params[:fn], fv: params[:fv]))}
   end
 
   table[:headings] = headings
@@ -14,7 +19,7 @@
   @roster_rows.each do |r|
     row = []
     @headings.each do |heading|
-      row << {content: (r[heading]) ? (link_to r[heading], roster_path(team_key: @team.key, event_key: @event.key, order_by: params[:order_by], asc: params[:asc], fn: heading, fv: r[heading])) : "--"}
+      row << {content: (r[heading]) ? (link_to r[heading], roster_path(team_key: team_key, event_key: @event.key, order_by: params[:order_by], asc: params[:asc], fn: heading, fv: r[heading])) : "--"}
     end
     rows << row
   end

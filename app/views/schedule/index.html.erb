@@ -14,4 +14,9 @@
 <h3>Standings</h3>
 <%= render 'standings_table' %>
 </div>
+
+<div class="right">
+  <h3>Top Players (<%= link_to "All Players", roster_path(team_key: @tkey, event_key: @event.key) %>)</h3>
+  <%= render 'players_table' %>
+</div>
 <% end %>

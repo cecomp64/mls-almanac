@@ -17,13 +17,19 @@
       &nbsp;</h1>
 <h2 class="subheading"><%= header_title(yield(:h2)) %>&nbsp;</h2>
 <h2 class="subheading alternate_row"><%= header_title(yield(:h3)) %>&nbsp;</h2>
-
+<div>
+  <%= link_to("All Seasons", '/') %>
+</div>
 
 <% if flash[:error] %>
 <div id="error"><%= flash[:error] %></div>
 <% end %>
 
 <%= yield %>
+
+<h1 style="clear:both;" class="subheading">
+  &nbsp;
+</h1>
 
 </body>
 </html>

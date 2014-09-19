@@ -1,6 +1,8 @@
-<%= provide(:title, "Schedule #{@event.title}") %>
+<%= provide(:title, "Roster #{@event.title}") %>
 <%= provide(:h1, @event.title) %>
-<%= provide(:h2, ">> Roster for #{@team.title}") %>
+<% if @team %>
+  <%= provide(:h2, ">> Roster for #{@team.title}") %>
+<% end %>
 
 <% if params[:order_by] %>
 <%= provide(:h3, ">>>> Sorted by #{params[:order_by].titleize}") %>
@@ -14,4 +16,4 @@
 
 <%= paginate @roster %>
 <%= render 'roster_table' %>
-<%= link_to "Clear Filters", roster_path(team_key: @team.key, event_key: @event.key) %>
+<%= link_to "Clear Filters", roster_path(team_key: @tkey, event_key: @event.key) %>

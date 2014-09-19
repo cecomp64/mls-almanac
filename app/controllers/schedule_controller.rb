@@ -18,6 +18,8 @@ class ScheduleController < ApplicationController
     else
       @schedule = schedule(@event, @team)
       @standings = get_standings(@event)
+      @players = players_with_stats(@event, @team, "player_stats.\"totalGoals\" DESC")
+      @player_limit = 5
       if (@team)
         @team_standing = @standings.find_by_team_id(@team)
       end

@@ -1,5 +1,8 @@
 module ApplicationHelper
 
+  # Grab some useful queries
+  include Queries
+
   def header_title(title)
     if (title)
       return title
